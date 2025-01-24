@@ -10,39 +10,55 @@ package Lab1;
  */
 public class PalindromoAir {
     
-    Ticket[] ticket=new Ticket[30];
+    private Ticket[] asientos;
+
+    public PalindromoAir(){
+        asientos=new Ticket[30];
+    }
     
     public int firstAvailable(){
-        return firstAvailable(0);
+        return firstAvailableRec(0);
     }
-    
-    private int firstAvailable(int n){
-        
-        
-        return -1;
-    }
-    
-    /*
-    public int sumaDOWN(int n){
-        return sumaDOWN(n,0);
-    }
-    
-    private int sumaDOWN(int n, int suma){
-        if(n>0){
-            return sumaDOWN(n-1,suma+n);
+
+    private int firstAvailableRec(int i){
+        if (i>=asientos.length){
+            return -1;
         }
-        return suma;
+        if (asientos[i] == null){
+            return i;
+        }
+        return firstAvailableRec(i+1);
     }
-    */
+
+    
     
     public int searchPassenger(String name){
-        
-        
-        return -1;
+        return searchPassengerRec(name, 0);
     }
-    
+
+    private int searchPassengerRec(String name,int i){
+        if(i >= asientos.length){
+            return -1;
+        }
+        if(asientos[i]!=null&&asientos[i].getNombre().equals(name)){
+            return i;
+        }
+        return searchPassengerRec(name,i+1);
+    }
+
     public boolean isPalindromo(String name){
-        
+        String n=name.toLowerCase();
+        return isPalindromoRec(n,0,n.length()-1);
+    }
+
+    private boolean isPalindromoRec(String s,int inicio,int fin){
+        if(inicio>=fin){
+            return true;
+        }
+        if(s.charAt(inicio)!=s.charAt(fin)){
+            return false;
+        }
+        return isPalindromoRec(s,inicio+1,fin-1);
     }
     
     public void printPassengers(){

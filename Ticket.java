@@ -12,8 +12,8 @@ public class Ticket {
     private String nombre;
     private double total;
     public Ticket(String nombre, double total){
-        this.total=total;
         this.nombre=nombre;
+        this.total=total;
     }
 
     public String getNombre() {
@@ -23,11 +23,8 @@ public class Ticket {
     public double getTotal() {
         return total;
     }
-    
-    public void print(Ticket ticket){
-        System.out.println("Nombre: "+nombre
-                    +    "\nTotal de Ticket: L."+total);
+
+    public void print(){
+        System.out.println("Pasajero: "+nombre+" - Total pagado: $"+total);
     }
-    
-    
 }
