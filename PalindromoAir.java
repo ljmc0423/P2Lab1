@@ -62,27 +62,81 @@ public class PalindromoAir {
     }
     
     public void printPassengers(){
-        
+        printPassengersRec(0);
     }
-    
+
+    private void printPassengersRec(int i){
+        if(i>=asientos.length){
+            return;
+        }
+        if(asientos[i]!=null){
+            asientos[i].print();
+        }
+        printPassengersRec(i+1);
+    }
+
     public double income(){
-        
+        return incomeRec(0);
     }
-    
+
+    private double incomeRec(int i){
+        if(i>=asientos.length){
+            return 0;
+        }
+        if(asientos[i]!=null){
+            return asientos[i].getTotal()+incomeRec(i+1);
+        }
+        return incomeRec(i+1);
+    }
+
     public void reset(){
-        
+        resetRec(0);
     }
+
+    private void resetRec(int i){
+        if(i>=asientos.length){
+            return;
+        }
+        asientos[i]=null;
+        resetRec(i+1);
+    }
+
     
+
     public void sellTicket(String name){
-        
+        int pos=firstAvailable();
+        if(pos==-1) {
+            System.out.println("No hay asientos disponibles.");
+            return;
+        }
+        double costo=800;
+        if(isPalindromo(name)){
+            costo*=0.8;
+        }
+        asientos[pos]=new Ticket(name,costo);
+        System.out.println("Ticket vendido a "+name+" por $"+costo);
     }
-    
+
     public boolean cancelTicket(String name){
-        
+        int pos=searchPassenger(name);
+        if(pos==-1){
+            return false;
+        }
+        asientos[pos]=null;
+        return true;
     }
-    
+
     public void dispatch(){
-        
+        double total=income();
+        System.out.println("Ingreso total del vuelo: $"+total);
+        reset();
+    }
+
+    public Ticket getAsiento(int i){
+        if(i<0||i>=asientos.length){
+            return null;
+        }
+        return asientos[i];
     }
     
     
