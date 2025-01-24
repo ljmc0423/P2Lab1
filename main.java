@@ -6,8 +6,13 @@ package Lab1;
 
 /**
  *
- * @author ljmc2
+ * @author Kellyan Escobar, Lorenzo Matta y Mario Vásquez
  */
 public class main {
-    
+    public static void main(String[] args) {
+        PalindromoAir pair=new PalindromoAir();
+        
+        
+        
+    }
 }
