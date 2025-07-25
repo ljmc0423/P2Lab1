@@ -19,7 +19,7 @@ public class Ticket {
         this.nombre = nombre;
         this.esPalindromo = esPalindromo;
         this.montoOriginal = precioBase;
-        this.montoFinal = esPalindromo ? precioBase * 0.8 : precioBase;
+        this.montoFinal = esPalindromo ? precioBase * 0.7 : precioBase;
     }
 
     public String getName() {

@@ -15,7 +15,7 @@ import javax.swing.JTextArea;
 public class PalindromoAir {
 
     private Ticket[] asientos = new Ticket[30];
-    private final double PRECIO_BASE = 100.0;
+    private final double PRECIO_BASE = 200.0;
 
     public int firstAvailable(int index) {
         if (index >= asientos.length) {
@@ -54,7 +54,7 @@ public class PalindromoAir {
             return;
         }
         if (asientos[index] != null) {
-            area.append("Asiento " + index + ":\n" + asientos[index].print() + "\n\n");
+            area.append("Asiento " + (index+1) + ":\n" + asientos[index].print() + "\n\n");
         }
         printPassengers(index + 1, area);
     }
@@ -75,18 +75,23 @@ public class PalindromoAir {
     }
 
     public void sellTicket(String nombre, JButton[] botones, JTextArea areaMensajes) {
-        int pos = firstAvailable(0);
-        if (pos == -1) {
-            areaMensajes.setText("Avión lleno. No se puede vender más boletos.");
-            return;
+        if(!nombre.equals("")){
+            int pos = firstAvailable(0);
+            if (pos == -1) {
+                areaMensajes.setText("Avión lleno. No se puede vender más boletos.");
+                return;
+            }
+
+            boolean esPal = isPalindromo(nombre);
+            Ticket ticket = new Ticket(nombre, PRECIO_BASE, esPal);
+            asientos[pos] = ticket;
+
+            botones[pos].setBackground(esPal ? Color.BLUE : Color.RED);
+            areaMensajes.setText("Ticket vendido. Monto pagado: $" + ticket.getFinalAmount());
+        }else{
+            areaMensajes.setText("Nombre vacío, intente de nuevo.");
         }
-
-        boolean esPal = isPalindromo(nombre);
-        Ticket ticket = new Ticket(nombre, PRECIO_BASE, esPal);
-        asientos[pos] = ticket;
-
-        botones[pos].setBackground(esPal ? Color.BLUE : Color.RED);
-        areaMensajes.setText("Ticket vendido. Monto pagado: $" + ticket.getFinalAmount());
+        
     }
 
     public boolean cancelTicket(String nombre, JButton[] botones, JTextArea areaMensajes) {
