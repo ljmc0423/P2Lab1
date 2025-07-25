@@ -8,7 +8,7 @@ package lab1p2;
  *
  * @author ljmc2
  */
-public class Lab1P2 {
+public class MainApp {
 
     public static void main(String[] args) {
         
