@@ -9,6 +9,7 @@ package lab1p2;
  * @author ljmc2
  */
 public class Ticket {
+
     private String nombre;
     private double montoFinal;
     private double montoOriginal;
@@ -38,9 +39,9 @@ public class Ticket {
     }
 
     public String print() {
-        return "Nombre: " + nombre + "\n" +
-               "Monto original: $" + montoOriginal + "\n" +
-               "Monto pagado: $" + montoFinal + "\n" +
-               "Descuento por palíndromo: " + (esPalindromo ? "Sí" : "No");
+        return "Nombre: " + nombre + "\n"
+                + "Monto original: $" + montoOriginal + "\n"
+                + "Monto pagado: $" + montoFinal + "\n"
+                + "Descuento por palíndromo: " + (esPalindromo ? "Sí" : "No");
     }
 }
